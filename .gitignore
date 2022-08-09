@@ -1,0 +1,2 @@
+# ignore mysql credentials file
+dbConfig.js
