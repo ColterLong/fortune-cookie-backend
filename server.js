@@ -17,25 +17,20 @@ const table = sqlCred.table;
 const tableAttribute = sqlCred.tableAttribute;
 const query = `SELECT * FROM ${table}`;
 
+const cors = require('cors');
+app.use(cors());
+
+
 app.use(bodyParser.json());
 app.listen(port, () => console.log(`Server is running on port: ${port}!`))
 
-
-//const con = mysql.createConnection({
-//  host, user, password, database,
-//});
-
-
-
 app.get('/', (req, res) => res.send('Hi!'))
-
 
 app.get('/list', async (req, res) => {
   const con = await connection({host, user, password, database,}).catch(e => {})
   const results = await queryDb(con, query).catch(console.log);
   res.json({ results });
 })
-
 
 app.post('/', async (req, res) => {
   console.log(req.body);
