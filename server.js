@@ -22,7 +22,7 @@ app.use(cors());
 
 
 app.use(bodyParser.json());
-app.listen(port, () => console.log(`Server is running on port: ${port}!`))
+//app.listen(port, () => console.log(`Server is running on port: ${port}!`))
 
 app.get('/', (req, res) => res.send('Hi!'))
 
@@ -43,3 +43,16 @@ app.post('/', async (req, res) => {
   res.json({ results });
 });
 
+const https = require("https");
+const options = {
+  key: process.env.SERVER_KEY,
+  cert: process.env.SERVER_CERT,
+};
+  
+https.createServer(options, app)
+  .listen(port, function (req, res) {
+     console.log(`Server is running on port: ${port}!`);
+  });
+
+console.log(`key: ${process.env.SERVER_KEY}`);
+console.log(`cert: ${process.env.SERVER_CERT}`);
