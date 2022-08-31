@@ -5,16 +5,15 @@ const connection = require('./helpers/connection.js');
 const queryDb = require('./helpers/query.js');
 
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 // mysql credentials
-const sqlCred = require('./dbConfig.js');
-const host = sqlCred.host;
-const user = sqlCred.user;
-const password = sqlCred.password;
-const database = sqlCred.database;
-const table = sqlCred.table;
-const tableAttribute = sqlCred.tableAttribute;
+const host = process.env.HOST;
+const user = process.env.USER;
+const password = process.env.PASSWORD;
+const database = process.env.DATABASE;
+const table = process.env.TABLE;
+const tableAttribute = process.env.TABLEATTRIBUTE;
 const query = `SELECT * FROM ${table}`;
 
 const cors = require('cors');
